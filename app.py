@@ -13,8 +13,6 @@ def gerateExercise(teacher,year,mounth,w1_1,w1_2,w2_1,w2_2,i_exW1,i_exW2):
     for w in range(2):
 
         document = Document('doc-raiz/doc-raiz.docx')
-        
-        print(w)
 
         if w==0:
             i_ex = i_exW1
@@ -30,18 +28,21 @@ def gerateExercise(teacher,year,mounth,w1_1,w1_2,w2_1,w2_2,i_exW1,i_exW2):
                 if (os.path.exists(f'img/{i+1}p.jpeg')):
                     dicI = 'p'
                     dic = 'PORTUGUÊS'
-                if (os.path.exists(f'img/{i+1}m.jpeg')):
+                elif (os.path.exists(f'img/{i+1}m.jpeg')):
                     dicI = 'm'
                     dic = 'MATEMÁTICA'
-                if (os.path.exists(f'img/{i+1}h.jpeg')):
+                elif (os.path.exists(f'img/{i+1}h.jpeg')):
                     dicI = 'h'
                     dic = 'HISTÓRIA'
-                if (os.path.exists(f'img/{i+1}g.jpeg')):
+                elif (os.path.exists(f'img/{i+1}g.jpeg')):
                     dicI = 'g'
                     dic = 'GEOGRAFIA'
-                if (os.path.exists(f'img/{i+1}a.jpeg')):
+                elif (os.path.exists(f'img/{i+1}a.jpeg')):
                     dicI = 'a'
                     dic = 'ARTES'
+                elif (os.path.exists(f'img/{i+1}c.jpeg')):
+                    dicI = 'c'
+                    dic = 'CIÊNCIAS'
 
                 w1 = w1_1
                 w2 = w1_2
@@ -53,10 +54,11 @@ def gerateExercise(teacher,year,mounth,w1_1,w1_2,w2_1,w2_2,i_exW1,i_exW2):
                 header2_text = f'ATIVIDADE PARA {year}° ANO DE ESCOLARIDADE DO MÊS DE {mounth}\nSEMANA DE {w1}  A  {w2} ATIVIDADE No:{i+1}'
                 header2.add_run(header2_text).bold = True
 
-                exercise = document.add_picture(f'img/{i+1}{dicI}.jpeg',width = Inches(7),height = Inches(8.2))
+                exercise = document.add_picture(f'img/{i+1}{dicI}.jpeg', width = Inches(7), height = Inches(8.3))
 
-                print('w1')
+                print(w1)
 
+            
             if w==1:
 
                 if (os.path.exists(f'img/{i+1+i_exW1}p.jpeg')):
@@ -74,7 +76,9 @@ def gerateExercise(teacher,year,mounth,w1_1,w1_2,w2_1,w2_2,i_exW1,i_exW2):
                 if (os.path.exists(f'img/{i+1+i_exW1}a.jpeg')):
                     dicI = 'a'
                     dic = 'ARTES'
-
+                if (os.path.exists(f'img/{i+1+i_exW1}c.jpeg')):
+                    dicI = 'c'
+                    dic = 'CIÊNCIAS'
 
                 w1 = w2_1
                 w2 = w2_2
@@ -86,15 +90,14 @@ def gerateExercise(teacher,year,mounth,w1_1,w1_2,w2_1,w2_2,i_exW1,i_exW2):
                 header2_text = f'ATIVIDADE PARA {year}° ANO DE ESCOLARIDADE DO MÊS DE {mounth}\nSEMANA DE {w1}  A  {w2} ATIVIDADE No:{i+1+i_exW1}'
                 header2.add_run(header2_text).bold = True
                 
-                exercise = document.add_picture(f'img/{i+1+i_exW1}{dicI}.jpeg',width = Inches(7),height = Inches(8.2))
+                exercise = document.add_picture(f'img/{i+1+i_exW1}{dicI}.jpeg', width = Inches(7), height = Inches(8.3))
 
-                print('w2')
+                print(w2)
 
         document.save(f'saidas/Prof.{teacher} {mounth}{w+1}.docx')
         
 
 #Entradas
-
 teacher = input('Qual o nome do Professor(a)? ').upper()
 year = int(input('Qual o ano de escolaridade da turma? '))
 mounth = input('Qual o mês da apostila? ').upper()
